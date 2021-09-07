@@ -3,6 +3,7 @@ package gyr
 import (
 	"context"
 	"fmt"
+	"os"
 	"strings"
 
 	"github.com/jenkins-x/go-scm/scm"
@@ -16,7 +17,7 @@ type SCMResolver struct {
 var _ ReferenceResolver = (*SCMResolver)(nil)
 
 func NewSCMResolver() (*SCMResolver, error) {
-	client, err := factory.NewClient("", "", "")
+	client, err := factory.NewClient("", "", os.Getenv("GIT_TOKEN"))
 	if err != nil {
 		return nil, fmt.Errorf("new client from env: %w", err)
 	}

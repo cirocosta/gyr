@@ -13,10 +13,9 @@ func WriteYAML(w io.Writer, nodes []*yaml.Node) error {
 	const YAMLDocumentSeparator = "---\n"
 
 	encoder := yaml.NewEncoder(w)
-	for _, o := range nodes {
-		w.Write([]byte(YAMLDocumentSeparator))
-
-		if err := encoder.Encode(o); err != nil {
+	encoder.SetIndent(2)
+	for _, node := range nodes {
+		if err := encoder.Encode(node); err != nil {
 			return fmt.Errorf("encode: %w", err)
 		}
 	}
