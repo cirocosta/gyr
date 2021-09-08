@@ -1,0 +1,2 @@
+repository_revision: gyr+gh://cirocosta/gyr#master
+absolute_image_name: gyr+docker://ubuntu:latest

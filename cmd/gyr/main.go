@@ -16,12 +16,17 @@ func run(ctx context.Context) error {
 		return fmt.Errorf("new scm resolver: %w", err)
 	}
 
+	docker, err := gyr.NewDockerResolver()
+	if err != nil {
+		return fmt.Errorf("new docker resolver: %w", err)
+	}
+
 	nodes, err := gyr.NodesFromFiles(filenames())
 	if err != nil {
 		return fmt.Errorf("nodes from files: %w", err)
 	}
 
-	err = gyr.NewResolver(scm).Resolve(ctx, nodes...)
+	err = gyr.NewResolver(scm, docker).Resolve(ctx, nodes...)
 	if err != nil {
 		return fmt.Errorf("resolve: %w", err)
 	}

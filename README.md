@@ -1,8 +1,8 @@
-# gyr - git yaml resolve
+# gyr - generic yaml resolver
 
 similar to how [ko] transforms `ko://<main_go_module>` reference in a piece of
 yaml to the reference of a fully built container image in a registry, `gyr`
-transforms git references in a piece of yaml to commits SHAs.
+transforms git/docker/etc references in a piece of yaml to commits SHAs.
 
 for instance
 
@@ -22,7 +22,7 @@ foo:
 
 
 ```
-go get github.com/cirocosta/gyr
+go get github.com/cirocosta/gyr/cmd/gyr
 ```
 
 
@@ -48,6 +48,9 @@ gyr ./file.yaml
 ## supported providers
 
 - github: `gyr+gh://<repository_slug>#<reference>`
+- image registries: `gyr+docker://<repository_slug>#<reference>`
+
+see [./examples](./examples).
 
 
 ## license
